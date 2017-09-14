@@ -255,6 +255,7 @@
 	* [Jing](jing-component.adoc)
 	* [JIRA](jira-component.adoc)
 	* [JMS](jms-component.adoc)
+	* [JMS2](jms2-component.adoc)
 	* [JMX](jmx-component.adoc)
 	* [JOLT](jolt-component.adoc)
 	* [JPA](jpa-component.adoc)

@@ -36,11 +36,11 @@ import org.springframework.jms.core.JmsOperations;
  */
 public class DefaultQueueBrowseStrategy implements QueueBrowseStrategy {
 
-    public List<Exchange> browse(JmsOperations template, String queue, final JmsQueueEndpoint endpoint) {
+    public List<Exchange> browse(JmsOperations template, String queue, final JmsEndpoint endpoint, final int maximumBrowseSize) {
         if (endpoint.getSelector() != null) {
             return template.browseSelected(queue, endpoint.getSelector(), new BrowserCallback<List<Exchange>>() {
                 public List<Exchange> doInJms(Session session, QueueBrowser browser) throws JMSException {
-                    int size = endpoint.getMaximumBrowseSize();
+                    int size = maximumBrowseSize;
                     if (size <= 0) {
                         size = Integer.MAX_VALUE;
                     }
@@ -60,7 +60,7 @@ public class DefaultQueueBrowseStrategy implements QueueBrowseStrategy {
         } else {
             return template.browse(queue, new BrowserCallback<List<Exchange>>() {
                 public List<Exchange> doInJms(Session session, QueueBrowser browser) throws JMSException {
-                    int size = endpoint.getMaximumBrowseSize();
+                    int size = maximumBrowseSize;
                     if (size <= 0) {
                         size = Integer.MAX_VALUE;
                     }

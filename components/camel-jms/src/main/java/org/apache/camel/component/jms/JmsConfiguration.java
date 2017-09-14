@@ -127,8 +127,6 @@ public class JmsConfiguration implements Cloneable {
     private String clientId;
     @UriParam(description = "The durable subscriber name for specifying durable topic subscriptions. The clientId option must be configured as well.")
     private String durableSubscriptionName;
-    @Deprecated
-    private boolean subscriptionDurable;
     @UriParam(label = "consumer,advanced",
             description = "Specifies whether the listener session should be exposed when consuming messages.")
     private boolean exposeListenerSession = true;
@@ -918,16 +916,6 @@ public class JmsConfiguration implements Cloneable {
      */
     public void setErrorHandlerLogStackTrace(boolean errorHandlerLogStackTrace) {
         this.errorHandlerLogStackTrace = errorHandlerLogStackTrace;
-    }
-
-    @Deprecated
-    public boolean isSubscriptionDurable() {
-        return subscriptionDurable;
-    }
-
-    @Deprecated
-    public void setSubscriptionDurable(boolean subscriptionDurable) {
-        this.subscriptionDurable = subscriptionDurable;
     }
 
     public String getAcknowledgementModeName() {

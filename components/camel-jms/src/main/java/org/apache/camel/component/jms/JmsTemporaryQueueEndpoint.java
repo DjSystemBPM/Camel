@@ -54,7 +54,6 @@ public class JmsTemporaryQueueEndpoint extends JmsQueueEndpoint implements Desti
         setDestination(jmsDestination);
     }
 
-
     /**
      * This endpoint is a singleton so that the temporary destination instances are shared across all
      * producers and consumers of the same endpoint URI

@@ -661,14 +661,6 @@ public class JmsComponent extends HeaderFilterStrategyComponent implements Appli
     }
 
     /**
-     * Deprecated: Enabled by default, if you specify a durableSubscriptionName and a clientId.
-     */
-    @Deprecated
-    public void setSubscriptionDurable(boolean subscriptionDurable) {
-        getConfiguration().setSubscriptionDurable(subscriptionDurable);
-    }
-
-    /**
      * Allows you to specify a custom task executor for consuming messages.
      */
     @Metadata(label = "consumer,advanced",

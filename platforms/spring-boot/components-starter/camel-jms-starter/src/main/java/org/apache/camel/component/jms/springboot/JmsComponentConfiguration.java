@@ -315,12 +315,6 @@ public class JmsComponentConfiguration
      */
     private Long recoveryInterval = 5000L;
     /**
-     * Deprecated: Enabled by default if you specify a durableSubscriptionName
-     * and a clientId.
-     */
-    @Deprecated
-    private Boolean subscriptionDurable = false;
-    /**
      * Allows you to specify a custom task executor for consuming messages.
      */
     @NestedConfigurationProperty
@@ -919,17 +913,6 @@ public class JmsComponentConfiguration
         this.recoveryInterval = recoveryInterval;
     }
 
-    @Deprecated
-    @DeprecatedConfigurationProperty
-    public Boolean getSubscriptionDurable() {
-        return subscriptionDurable;
-    }
-
-    @Deprecated
-    public void setSubscriptionDurable(Boolean subscriptionDurable) {
-        this.subscriptionDurable = subscriptionDurable;
-    }
-
     public TaskExecutor getTaskExecutor() {
         return taskExecutor;
     }
@@ -1310,8 +1293,6 @@ public class JmsComponentConfiguration
          * default errorHandler.
          */
         private Boolean errorHandlerLogStackTrace = true;
-        @Deprecated
-        private Boolean subscriptionDurable;
         /**
          * The JMS acknowledgement name, which is one of: SESSION_TRANSACTED,
          * CLIENT_ACKNOWLEDGE, AUTO_ACKNOWLEDGE, DUPS_OK_ACKNOWLEDGE
@@ -1960,17 +1941,6 @@ public class JmsComponentConfiguration
         public void setErrorHandlerLogStackTrace(
                 Boolean errorHandlerLogStackTrace) {
             this.errorHandlerLogStackTrace = errorHandlerLogStackTrace;
-        }
-
-        @Deprecated
-        @DeprecatedConfigurationProperty
-        public Boolean getSubscriptionDurable() {
-            return subscriptionDurable;
-        }
-
-        @Deprecated
-        public void setSubscriptionDurable(Boolean subscriptionDurable) {
-            this.subscriptionDurable = subscriptionDurable;
         }
 
         public String getAcknowledgementModeName() {

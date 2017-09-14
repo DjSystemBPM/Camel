@@ -193,6 +193,7 @@
     <module>camel-jing-starter</module>
     <module>camel-jira-starter</module>
     <module>camel-jms-starter</module>
+    <module>camel-jms2-starter</module>
     <module>camel-jmx-starter</module>
     <module>camel-johnzon-starter</module>
     <module>camel-jolt-starter</module>

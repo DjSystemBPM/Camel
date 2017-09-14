@@ -347,7 +347,6 @@ public class JmsEndpointConfigurationTest extends CamelTestSupport {
         assertTrue(endpoint.isReplyToDeliveryPersistent());
         assertFalse(endpoint.isUseMessageIDAsCorrelationID());
         assertTrue(endpoint.isSingleton());
-        assertFalse(endpoint.isSubscriptionDurable());
         assertFalse(endpoint.isTestConnectionOnStartup());
         assertFalse(endpoint.isTransacted());
         assertFalse(endpoint.isTransferExchange());

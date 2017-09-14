@@ -30,7 +30,6 @@ import org.apache.camel.component.jms.ReplyToType;
 import org.apache.camel.spi.HeaderFilterStrategy;
 import org.apache.camel.spring.boot.ComponentConfigurationPropertiesCommon;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.context.properties.DeprecatedConfigurationProperty;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.jms.core.JmsOperations;
@@ -312,12 +311,6 @@ public class AMQPComponentConfiguration
      * seconds.
      */
     private Long recoveryInterval = 5000L;
-    /**
-     * Deprecated: Enabled by default if you specify a durableSubscriptionName
-     * and a clientId.
-     */
-    @Deprecated
-    private Boolean subscriptionDurable = false;
     /**
      * Allows you to specify a custom task executor for consuming messages.
      */
@@ -915,17 +908,6 @@ public class AMQPComponentConfiguration
 
     public void setRecoveryInterval(Long recoveryInterval) {
         this.recoveryInterval = recoveryInterval;
-    }
-
-    @Deprecated
-    @DeprecatedConfigurationProperty
-    public Boolean getSubscriptionDurable() {
-        return subscriptionDurable;
-    }
-
-    @Deprecated
-    public void setSubscriptionDurable(Boolean subscriptionDurable) {
-        this.subscriptionDurable = subscriptionDurable;
     }
 
     public TaskExecutor getTaskExecutor() {

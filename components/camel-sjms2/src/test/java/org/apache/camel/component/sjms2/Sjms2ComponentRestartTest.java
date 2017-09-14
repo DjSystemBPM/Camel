@@ -68,6 +68,8 @@ public class Sjms2ComponentRestartTest extends CamelTestSupport {
 
         context.start();
 
+        resetMocks();
+
         getMockEndpoint("mock:test").expectedMessageCount(1);
 
         // and re-create template
@@ -97,6 +99,8 @@ public class Sjms2ComponentRestartTest extends CamelTestSupport {
         getMockEndpoint("mock:test").expectedMessageCount(1);
         template.sendBody("sjms2:queue:test", "Hello World");
         assertMockEndpointsSatisfied();
+
+        resetMocks();
 
         // restart
         context.suspend();

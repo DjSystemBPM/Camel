@@ -770,12 +770,6 @@ public class JmsEndpoint extends DefaultEndpoint implements AsyncEndpoint, Heade
     }
 
     @ManagedAttribute
-    @Deprecated
-    public boolean isSubscriptionDurable() {
-        return getConfiguration().isSubscriptionDurable();
-    }
-
-    @ManagedAttribute
     public boolean isTransacted() {
         return getConfiguration().isTransacted();
     }
@@ -1015,12 +1009,6 @@ public class JmsEndpoint extends DefaultEndpoint implements AsyncEndpoint, Heade
     @ManagedAttribute
     public void setRequestTimeout(long requestTimeout) {
         getConfiguration().setRequestTimeout(requestTimeout);
-    }
-
-    @ManagedAttribute
-    @Deprecated
-    public void setSubscriptionDurable(boolean subscriptionDurable) {
-        getConfiguration().setSubscriptionDurable(subscriptionDurable);
     }
 
     public void setTaskExecutor(TaskExecutor taskExecutor) {

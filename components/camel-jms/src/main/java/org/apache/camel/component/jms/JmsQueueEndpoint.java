@@ -96,7 +96,7 @@ public class JmsQueueEndpoint extends JmsEndpoint implements BrowsableEndpoint {
         }
         String queue = getDestinationName();
         JmsOperations template = getConfiguration().createInOnlyTemplate(this, false, queue);
-        return queueBrowseStrategy.browse(template, queue, this);
+        return queueBrowseStrategy.browse(template, queue, this, getMaximumBrowseSize());
     }
 
     protected QueueBrowseStrategy createQueueBrowseStrategy() {
