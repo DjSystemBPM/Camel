@@ -51,6 +51,28 @@ public class Jms2ComponentConfiguration
             ComponentConfigurationPropertiesCommon {
 
     /**
+     * Set whether to make the subscription durable. The durable subscription
+     * name to be used can be specified through the subscriptionName property.
+     * Default is false. Set this to true to register a durable subscription
+     * typically in combination with a subscriptionName value (unless your
+     * message listener class name is good enough as subscription name). Only
+     * makes sense when listening to a topic (pub-sub domain) therefore this
+     * method switches the pubSubDomain flag as well.
+     */
+    private Boolean subscriptionDurable = false;
+    /**
+     * Set whether to make the subscription shared. The shared subscription name
+     * to be used can be specified through the subscriptionName property.
+     * Default is false. Set this to true to register a shared subscription
+     * typically in combination with a subscriptionName value (unless your
+     * message listener class name is good enough as subscription name). Note
+     * that shared subscriptions may also be durable so this flag can (and often
+     * will) be combined with subscriptionDurable as well. Only makes sense when
+     * listening to a topic (pub-sub domain) therefore this method switches the
+     * pubSubDomain flag as well. Requires a JMS 2.0 compatible message broker.
+     */
+    private Boolean subscriptionShared = false;
+    /**
      * To use a shared JMS configuration
      */
     @NestedConfigurationProperty
@@ -577,6 +599,22 @@ public class Jms2ComponentConfiguration
      * placeholders.
      */
     private Boolean resolvePropertyPlaceholders = true;
+
+    public Boolean getSubscriptionDurable() {
+        return subscriptionDurable;
+    }
+
+    public void setSubscriptionDurable(Boolean subscriptionDurable) {
+        this.subscriptionDurable = subscriptionDurable;
+    }
+
+    public Boolean getSubscriptionShared() {
+        return subscriptionShared;
+    }
+
+    public void setSubscriptionShared(Boolean subscriptionShared) {
+        this.subscriptionShared = subscriptionShared;
+    }
 
     public JmsConfiguration getConfiguration() {
         return configuration;

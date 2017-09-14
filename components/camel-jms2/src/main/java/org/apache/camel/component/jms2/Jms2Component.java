@@ -16,15 +16,39 @@
  */
 package org.apache.camel.component.jms2;
 
+import java.util.Map;
+
+import org.apache.camel.Endpoint;
 import org.apache.camel.component.jms.JmsComponent;
 import org.apache.camel.component.jms.JmsConfiguration;
 import org.apache.camel.component.jms.JmsEndpoint;
 import org.apache.camel.component.jms.QueueBrowseStrategy;
+import org.apache.camel.spi.Metadata;
+import org.apache.camel.spi.UriParam;
 
 public class Jms2Component extends JmsComponent {
 
+    @Metadata(label = "consumer")
+    private boolean subscriptionDurable;
+
+    @Metadata(label = "consumer")
+    private boolean subscriptionShared;
+
     public Jms2Component() {
         super(Jms2Endpoint.class);
+    }
+
+    @Override
+    protected Endpoint createEndpoint(String uri, String remaining, Map<String, Object> parameters) throws Exception {
+        // set as parameters if not explicit configured on endpoint level and the option was enabled on component level
+        if (subscriptionDurable) {
+            parameters.putIfAbsent("subscriptionDurable", "true");
+        }
+        if (subscriptionShared) {
+            parameters.putIfAbsent("subscriptionShared", "true");
+        }
+
+        return super.createEndpoint(uri, remaining, parameters);
     }
 
     @Override
@@ -47,4 +71,40 @@ public class Jms2Component extends JmsComponent {
         return new Jms2QueueEndpoint(uri, component, subject, configuration, queueBrowseStrategy);
     }
 
+    public boolean isSubscriptionDurable() {
+        return subscriptionDurable;
+    }
+
+    /**
+     * Set whether to make the subscription durable. The durable subscription name
+     * to be used can be specified through the "subscriptionName" property.
+     * <p>Default is "false". Set this to "true" to register a durable subscription,
+     * typically in combination with a "subscriptionName" value (unless
+     * your message listener class name is good enough as subscription name).
+     * <p>Only makes sense when listening to a topic (pub-sub domain),
+     * therefore this method switches the "pubSubDomain" flag as well.
+     */
+    public void setSubscriptionDurable(boolean subscriptionDurable) {
+        this.subscriptionDurable = subscriptionDurable;
+    }
+
+    public boolean isSubscriptionShared() {
+        return subscriptionShared;
+    }
+
+    /**
+     * Set whether to make the subscription shared. The shared subscription name
+     * to be used can be specified through the "subscriptionName" property.
+     * <p>Default is "false". Set this to "true" to register a shared subscription,
+     * typically in combination with a "subscriptionName" value (unless
+     * your message listener class name is good enough as subscription name).
+     * Note that shared subscriptions may also be durable, so this flag can
+     * (and often will) be combined with "subscriptionDurable" as well.
+     * <p>Only makes sense when listening to a topic (pub-sub domain),
+     * therefore this method switches the "pubSubDomain" flag as well.
+     * <p><b>Requires a JMS 2.0 compatible message broker.</b>
+     */
+    public void setSubscriptionShared(boolean subscriptionShared) {
+        this.subscriptionShared = subscriptionShared;
+    }
 }
