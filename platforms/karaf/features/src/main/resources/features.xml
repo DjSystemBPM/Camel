@@ -1147,6 +1147,15 @@
     <bundle dependency='true'>mvn:org.apache.geronimo.specs/geronimo-jms_1.1_spec/${geronimo-jms-spec-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-jms/${project.version}</bundle>
   </feature>
+  <feature name='camel-jms2' version='${project.version}' resolver='(obr)' start-level='50'>
+    <feature version='${project.version}'>camel-jms</feature> <!-- jms2 extends jms component -->
+    <feature version='${spring-version-range}'>spring</feature>
+    <feature version='${spring-version-range}'>spring-jms</feature>
+    <bundle dependency='true'>mvn:org.apache.geronimo.specs/geronimo-jta_1.1_spec/${geronimo-jta-spec-version}</bundle>
+    <bundle dependency='true'>mvn:commons-pool/commons-pool/${commons-pool-version}</bundle>
+    <bundle dependency='true'>mvn:org.apache.geronimo.specs/geronimo-jms_2.0_spec/${geronimo-jms2-spec-version}</bundle>
+    <bundle>mvn:org.apache.camel/camel-jms2/${project.version}</bundle>
+  </feature>
   <feature name='camel-jmx' version='${project.version}' resolver='(obr)' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
     <bundle>mvn:org.apache.camel/camel-jmx/${project.version}</bundle>
